@@ -1,0 +1,39 @@
+@use 'colors' as *;
+@use 'constants' as *;
+
+.card {
+    background-color: $bg;
+    padding: $spacing;
+    transition: background-color 150ms;
+
+    &:hover {
+        background-color: $bg-grayed;
+    }
+}
+
+.img {
+    width: 100%;
+    background-color: $bg-grayed;
+    position: relative;
+    padding-bottom: 100%;
+    margin-bottom: $spacing;
+
+    @supports (aspect-ratio: 1/1) {
+        aspect-ratio: 1/1;
+    }
+}
+
+.details {
+    display: flex;
+    justify-content: space-between;
+}
+
+.name {
+    font-weight: 700;
+    font-size: 16px;
+    margin-bottom: 2px;
+}
+.office {
+    font-size: 14px;
+    color: $text-grayed;
+}

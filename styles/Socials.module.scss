@@ -1,0 +1,26 @@
+@use 'colors' as *;
+@use 'constants' as *;
+
+.socials {
+    flex-shrink: 0;
+    display: flex;
+    z-index: 100;
+    gap: calc(0.5 * $spacing);
+}
+
+.icon-wrapper {
+    width: 25px;
+    height: 25px;
+    background-color: $text;
+    border-radius: 9999px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    svg {
+        width: 15px;
+        height: 15px;
+        color: $bg;
+    }
+}
