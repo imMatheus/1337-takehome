@@ -3,12 +3,12 @@ import type { Icon as IconType } from 'react-feather'
 import Link from 'next/link'
 import styles from 'styles/Socials.module.scss'
 
-interface ColleagueCardIconProps {
+interface ColleagueSocialIconProps {
     Icon: IconType
     href: string
 }
 
-const ColleagueCardIcon: React.FC<ColleagueCardIconProps> = ({
+const ColleagueSocialIcon: React.FC<ColleagueSocialIconProps> = ({
     Icon,
     href,
 }) => {
@@ -26,4 +26,4 @@ const ColleagueCardIcon: React.FC<ColleagueCardIconProps> = ({
     )
 }
 
-export default ColleagueCardIcon
+export default ColleagueSocialIcon

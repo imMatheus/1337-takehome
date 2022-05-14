@@ -8,6 +8,17 @@ interface Props {
     colleagues: Colleague[]
 }
 
+const Home: NextPage<Props> = ({ colleagues }) => {
+    return (
+        <div className='p-4'>
+            <div className='container'>
+                <Toolbar />
+                <ColleaguesGrid colleagues={colleagues} />
+            </div>
+        </div>
+    )
+}
+
 export const getServerSideProps: GetServerSideProps<Props> = async (
     context
 ) => {
@@ -46,23 +57,12 @@ export const getServerSideProps: GetServerSideProps<Props> = async (
         props: {
             // limit to only 7 colleagues and reverse sort if necessary
             colleagues:
-                //  colleagues.slice(0, 7),
                 sort === 'desc'
-                    ? colleagues.slice(0, 10)
-                    : colleagues.reverse().slice(0, 10),
+                    ? // as the list of colleagues is already sorted by name we just need to reverse it
+                      colleagues.reverse().slice(0, 8)
+                    : colleagues.slice(0, 8),
         },
     }
-}
-
-const Home: NextPage<Props> = ({ colleagues }) => {
-    return (
-        <div className='p-4'>
-            <div className='container'>
-                <Toolbar />
-                <ColleaguesGrid colleagues={colleagues} />
-            </div>
-        </div>
-    )
 }
 
 export default Home

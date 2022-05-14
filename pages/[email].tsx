@@ -33,7 +33,11 @@ const ColleaguePage: React.FC<Props> = ({ colleague, colleagues }) => {
                     </a>
                 </Link>
                 <Image
-                    src={colleague.imageWallOfLeetUrl}
+                    // some of the colleagues did not have images, so we add a fallback taken from a colleague with an image
+                    src={
+                        colleague.imageWallOfLeetUrl ||
+                        'https://i.1337co.de/wallofleet/karl-ecstrom'
+                    }
                     alt={`${colleague.name} banner image`}
                     layout='fill'
                     objectFit='cover'

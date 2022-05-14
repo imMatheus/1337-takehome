@@ -1,34 +1,41 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 1337 take-home
 
-## Getting Started
+<p align="center">
+  <a href="https://tretton37.com/who-we-are" target="blank"><img src="./public/logo.svg" width="120" alt="1337 Logo" /></a>
+</p>
 
-First, run the development server:
+## Install and run
 
 ```bash
+# Install
+npm install
+# or
+yarn
+
+# Run
 npm run dev
 # or
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+> Notera att du måste lägga till en **.env.local** fil i roten av projektet med en **url** och **token** key.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Tech stack
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+1. Typescript
+2. Next.js
+3. SCSS
+4. TailwindCSS
+5. Axios
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Jag valde denna stack för att jag har en väldigt stor preferens för Typescript över Javascript då det hjälper mig vara säker i koden jag skriver och nästan alltid slutar i att jag blir klar snabbare. Next.js gör mitt liv som React utvecklare mycket enklare och producerar en bättre slutprodukt mot slut användaren, i just denna uppgift verkade det också ganska logiskt att använda det då jag kommer ha många statiska sidor för alla kollegor. SCSS var vald då det gör allt CSS gör men mer och bättre, så att använda vanlig CSS verkar som en dålig idé samt att det inte finns något extra steg för att använda det förutom att installera **sass** från NPM. Tailwind används enbart i [Toolbar.tsx](./components/Toolbar.tsx.tsx) och [List.tsx](./components/List.tsx) för att jag valde att använda ListBox komponenten från [HeadlessUI](https://headlessui.dev/react/listbox) för att spara tid. Axios gör det bara enklare att jobba med API endpoints.
 
-## Learn More
+## Important files
 
-To learn more about Next.js, take a look at the following resources:
+1. [index.tsx](./pages/index.tsx) - Fetches all colleagues with the specified filters and sort specifications
+2. [[email].tsx](./pages/[email].tsx) - Statically renders all colleagues pages
+3. [Colleague.ts](./types/Colleague.ts) - Defines the structure of a colleague
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Features and functional requirements
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Inte allting var implementerat som exempelvis tests då jag valde att fokusera på att göra en snygg hemsida som funkade bra. Jag har ingen direkt support mot färgblinda förutom att majoriteten av sidan är svart och vit vilket gör det enklare för någon med syn nedsättning att använda den. Sidan är helt responsiv och funkar på alla storlekar, detta var relativt enkelt då jag har mycket erfarenhet med att bygga responsiva layouts och kunde därmed följa många bra **best practices** jag lärt mig genom åren. Det finns **screen reader** support på ett par ställen så som bilder med en **alt** tag, HTML taggar med semantic mening men även i [List.tsx](./components/List.tsx) filen använder jag mig utav **sr-only** klassen för att beskriva vad denna listan är till för. Man kan sortera alla kollegor med deras namn men även filtrera dem med deras kontor, båda dessa kan kombineras. Jag hann inte lägga till så att man kan toggla mellan en list och grid view. Hela projektet är hostat med Vercel som sätter upp CI/CD från detta GitHub repo.
