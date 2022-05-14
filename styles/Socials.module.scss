@@ -17,6 +17,11 @@
     justify-content: center;
     align-items: center;
     position: relative;
+    transition: background-color $transitionDuration;
+
+    &:hover {
+        background-color: $accent;
+    }
 
     svg {
         width: 15px;

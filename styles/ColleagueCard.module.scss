@@ -4,7 +4,7 @@
 .card {
     background-color: $bg;
     padding: $spacing;
-    transition: background-color 150ms;
+    transition: background-color $transitionDuration;
 
     &:hover {
         background-color: $bg-grayed;
@@ -36,4 +36,12 @@
 .office {
     font-size: 14px;
     color: $text-grayed;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+    > svg {
+        width: 15px;
+        height: 15px;
+    }
 }

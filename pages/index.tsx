@@ -22,17 +22,30 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
         headers: { Authorization: `${process.env.token}` },
     })
 
+    console.log(!!data)
+
+    console.table(data.slice(0, 5))
+
+    console.log(data?.length)
+    if (data) {
+        console.log(data[219])
+
+        const al = data.find(
+            (colleague) => colleague.email === 'amin.yosoh@1337.tech'
+        )
+        console.log(al)
+    }
+
     return {
         props: {
             // limit to only 7 colleagues
-            colleagues: data.slice(0, 25),
+            colleagues: data.slice(0, 9),
+            // .slice(0, 25),
         },
     }
 }
 
 const Home: NextPage<Props> = ({ colleagues }) => {
-    console.log(colleagues)
-
     return (
         <div className='container'>
             <ColleaguesGrid colleagues={colleagues} />

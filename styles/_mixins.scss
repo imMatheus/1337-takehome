@@ -1,0 +1,5 @@
+@mixin mq-mobile {
+    @media (max-width: 599px) {
+        @content;
+    }
+}

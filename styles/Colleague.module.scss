@@ -1,0 +1,99 @@
+@use 'colors' as *;
+@use 'mixins' as *;
+@use 'constants' as *;
+
+.go-back {
+    display: block;
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    top: 40px;
+    left: 40px;
+    background-color: $text;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    transition: background-color transitionDuration;
+    color: $bg;
+    border-radius: 9999px;
+
+    @include mq-mobile {
+        top: 20px;
+        left: 20px;
+    }
+}
+
+.banner {
+    height: 350px;
+    position: relative;
+
+    @include mq-mobile {
+        height: 200px;
+    }
+}
+
+.wrapper {
+    padding: 0 40px;
+
+    @include mq-mobile {
+        padding: 0 20px;
+    }
+}
+
+.profileImg-wrapper {
+    --img-size: 180px;
+    width: var(--img-size);
+    height: calc(var(--img-size) / 2);
+    margin-bottom: 10px;
+
+    @include mq-mobile {
+        --img-size: 140px;
+    }
+}
+
+.profileImg {
+    width: var(--img-size);
+    height: var(--img-size);
+    transform: translateY(-50%);
+    position: relative;
+    border: solid 4px $bg-grayed;
+    border-radius: 9999px;
+    overflow: hidden;
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 25px;
+}
+
+.testimony {
+    > h2 {
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 10px;
+
+        > span {
+            color: $accent;
+            font-weight: bold;
+        }
+    }
+
+    &-text {
+        font-size: 16px;
+        line-height: 1.5;
+        color: $text-grayed;
+
+        > p:first-of-type {
+            font-size: 18px;
+            font-weight: 600;
+            color: $text;
+
+            @include mq-mobile {
+                font-size: 16px;
+            }
+        }
+    }
+}

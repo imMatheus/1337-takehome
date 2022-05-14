@@ -4,6 +4,7 @@ import styles from 'styles/ColleagueCard.module.scss'
 import Image from 'next/image'
 import Link from 'next/link'
 import Socials from '@/components/Socials'
+import { MapPin } from 'react-feather'
 
 interface ColleagueCardProps {
     colleague: Colleague
@@ -31,7 +32,9 @@ const ColleagueCard: React.FC<ColleagueCardProps> = ({ colleague }) => {
                             <h3 className={styles.name}>{colleague.name}</h3>
                         </a>
                     </Link>
-                    <p className={styles.office}>Office: {colleague.office}</p>
+                    <p className={styles.office}>
+                        <MapPin /> {colleague.office}
+                    </p>
                 </div>
                 <Socials colleague={colleague} />
             </div>
