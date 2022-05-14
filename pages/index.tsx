@@ -32,14 +32,14 @@ export const getServerSideProps: GetServerSideProps<Props> = async (
         office === 'all' || !office
             ? data
             : data.filter((colleague) => {
+                  // filters all colleagues who work at the given office
                   if (office) {
                       return (
                           colleague.office ===
-                          //@ts-ignore
+                          //@ts-ignore capitalize first letter
                           office.charAt(0).toUpperCase() + office.slice(1)
                       )
                   }
-                  return false
               })
 
     return {
@@ -48,8 +48,8 @@ export const getServerSideProps: GetServerSideProps<Props> = async (
             colleagues:
                 //  colleagues.slice(0, 7),
                 sort === 'desc'
-                    ? colleagues.reverse().slice(0, 10)
-                    : colleagues.slice(0, 10),
+                    ? colleagues.slice(0, 10)
+                    : colleagues.reverse().slice(0, 10),
         },
     }
 }

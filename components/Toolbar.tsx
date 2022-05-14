@@ -41,7 +41,7 @@ const Toolbar: React.FC<ToolbarProps> = ({}) => {
     }, [sort, office])
 
     return (
-        <div className='mb-4 p-3 flex items-center flex-wrap flex-col md:flex-row'>
+        <div className='mb-4 p-3 flex md:items-center flex-wrap flex-col md:flex-row'>
             <div className='mr-auto'>
                 <Image
                     src='/logo.svg'
@@ -51,7 +51,7 @@ const Toolbar: React.FC<ToolbarProps> = ({}) => {
                 />
             </div>
 
-            <div className='relativ w-72 max-w-full z-30 mr-2'>
+            <div className='relative w-72 max-w-full z-30 mr-2'>
                 <Listbox value={sort} onChange={setSort}>
                     <div className='relative mt-1'>
                         <span className='sr-only'>Sort by name</span>

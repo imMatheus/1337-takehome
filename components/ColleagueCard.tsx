@@ -19,7 +19,7 @@ const ColleagueCard: React.FC<ColleagueCardProps> = ({ colleague }) => {
                         <Image
                             src={
                                 colleague.imagePortraitUrl ||
-                                'https://i.1337co.de/profile/ziga-vajdic'
+                                'https://i.1337co.de/profile/alexander-danson'
                             }
                             layout='fill'
                             objectFit='cover'
