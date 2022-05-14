@@ -134,8 +134,6 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
         headers: { Authorization: `${process.env.token}` },
     })
 
-    console.log(data[18])
-
     const colleague = data.find(
         (colleague) => colleague.email === params?.email
     )
