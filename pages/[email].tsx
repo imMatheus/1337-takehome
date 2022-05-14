@@ -17,11 +17,6 @@ interface Props {
 const ColleaguePage: React.FC<Props> = ({ colleague, colleagues }) => {
     const router = useRouter()
 
-    if (!colleague) {
-        router.push('/')
-        return <></>
-    }
-
     return (
         <div className='container'>
             <div className={styles.banner}>
@@ -33,10 +28,10 @@ const ColleaguePage: React.FC<Props> = ({ colleague, colleagues }) => {
                 <Image
                     // some of the colleagues did not have images, so we add a fallback taken from a colleague with an image
                     src={
-                        colleague.imageWallOfLeetUrl ||
+                        colleague?.imageWallOfLeetUrl ||
                         'https://i.1337co.de/wallofleet/anders-ringqvist'
                     }
-                    alt={`${colleague.name} banner image`}
+                    alt={`${colleague?.name} banner image`}
                     layout='fill'
                     objectFit='cover'
                     objectPosition='top'
@@ -49,10 +44,10 @@ const ColleaguePage: React.FC<Props> = ({ colleague, colleagues }) => {
                         <Image
                             // some of the colleagues did not have images, so we add a fallback taken from a colleague with an image
                             src={
-                                colleague.imagePortraitUrl ||
+                                colleague?.imagePortraitUrl ||
                                 'https://i.1337co.de/profile/anders-ringqvist'
                             }
-                            alt={`${colleague.name} profile image`}
+                            alt={`${colleague?.name} profile image`}
                             layout='fill'
                             objectFit='cover'
                             priority
@@ -60,9 +55,9 @@ const ColleaguePage: React.FC<Props> = ({ colleague, colleagues }) => {
                     </div>
                 </div>
                 <div className={styles.details}>
-                    <h2>{colleague.name}</h2>
-                    <p>{colleague.email}</p>
-                    <Socials colleague={colleague} />
+                    <h2>{colleague?.name}</h2>
+                    <p>{colleague?.email}</p>
+                    {colleague && <Socials colleague={colleague} />}
                 </div>
 
                 <div className={styles.testimony}>
@@ -71,13 +66,15 @@ const ColleaguePage: React.FC<Props> = ({ colleague, colleagues }) => {
                     </h2>
                     <span
                         className={styles['testimony-text']}
-                        dangerouslySetInnerHTML={{ __html: colleague.mainText }}
+                        dangerouslySetInnerHTML={{
+                            __html: colleague?.mainText || '',
+                        }}
                     ></span>
                 </div>
 
                 <h2>My colleagues</h2>
                 <div className={styles.colleagues}>
-                    {colleagues.map((colleague) => (
+                    {colleagues?.map((colleague) => (
                         <Link
                             href={`/${colleague.email}`}
                             passHref
