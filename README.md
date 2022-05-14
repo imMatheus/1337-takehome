@@ -1,7 +1,7 @@
 # 1337 take-home
 
 <p align="center">
-  <a href="https://tretton37.com/who-we-are" target="blank"><img src="./public/logo.svg" width="120" alt="1337 Logo" /></a>
+  <a href="https://tretton37.com/who-we-are" target="blank"><img src="./public/logo.svg" width="220" alt="1337 Logo" /></a>
 </p>
 
 ## Install and run
