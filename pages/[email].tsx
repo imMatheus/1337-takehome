@@ -38,6 +38,7 @@ const ColleaguePage: React.FC<Props> = ({ colleague, colleagues }) => {
                     layout='fill'
                     objectFit='cover'
                     objectPosition='top'
+                    priority
                 />
             </div>
             <div className={styles.wrapper}>
@@ -48,6 +49,7 @@ const ColleaguePage: React.FC<Props> = ({ colleague, colleagues }) => {
                             alt={`${colleague.name} profile image`}
                             layout='fill'
                             objectFit='cover'
+                            priority
                         />
                     </div>
                 </div>
@@ -65,6 +67,19 @@ const ColleaguePage: React.FC<Props> = ({ colleague, colleagues }) => {
                         className={styles['testimony-text']}
                         dangerouslySetInnerHTML={{ __html: colleague.mainText }}
                     ></span>
+                </div>
+
+                <h2>My colleagues</h2>
+                <div className={styles.colleagues}>
+                    {colleagues.map((colleague) => (
+                        <Link
+                            href={`/${colleague.email}`}
+                            passHref
+                            key={colleague.email}
+                        >
+                            <a className={styles.colleague}>{colleague.name}</a>
+                        </Link>
+                    ))}
                 </div>
             </div>
         </div>
