@@ -15,8 +15,6 @@ interface Props {
 }
 
 const ColleaguePage: React.FC<Props> = ({ colleague, colleagues }) => {
-    console.log(colleague)
-    console.log(colleagues)
     const router = useRouter()
 
     if (!colleague) {
@@ -36,7 +34,7 @@ const ColleaguePage: React.FC<Props> = ({ colleague, colleagues }) => {
                     // some of the colleagues did not have images, so we add a fallback taken from a colleague with an image
                     src={
                         colleague.imageWallOfLeetUrl ||
-                        'https://i.1337co.de/wallofleet/karl-ecstrom'
+                        'https://i.1337co.de/wallofleet/anders-ringqvist'
                     }
                     alt={`${colleague.name} banner image`}
                     layout='fill'
@@ -49,7 +47,11 @@ const ColleaguePage: React.FC<Props> = ({ colleague, colleagues }) => {
                 <div className={styles['profileImg-wrapper']}>
                     <div className={styles.profileImg}>
                         <Image
-                            src={colleague.imagePortraitUrl}
+                            // some of the colleagues did not have images, so we add a fallback taken from a colleague with an image
+                            src={
+                                colleague.imagePortraitUrl ||
+                                'https://i.1337co.de/profile/anders-ringqvist'
+                            }
                             alt={`${colleague.name} profile image`}
                             layout='fill'
                             objectFit='cover'
@@ -131,6 +133,8 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
     const { data } = await axios.get<Colleague[]>(process.env.url, {
         headers: { Authorization: `${process.env.token}` },
     })
+
+    console.log(data[18])
 
     const colleague = data.find(
         (colleague) => colleague.email === params?.email

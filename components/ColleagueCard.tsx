@@ -20,7 +20,7 @@ const ColleagueCard: React.FC<ColleagueCardProps> = ({ colleague }) => {
                             // some of the colleagues did not have images, so we add a fallback taken from a colleague with an image
                             src={
                                 colleague.imagePortraitUrl ||
-                                'https://i.1337co.de/profile/alexander-danson'
+                                'https://i.1337co.de/profile/anders-ringqvist'
                             }
                             layout='fill'
                             objectFit='cover'
