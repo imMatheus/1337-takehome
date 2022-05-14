@@ -26,6 +26,7 @@
 .banner {
     height: 350px;
     position: relative;
+    background-color: $bg-grayed;
 
     @include mq-mobile {
         height: 200px;
@@ -111,11 +112,15 @@
     padding: 6px 12px;
     border-radius: 9999px;
     background-color: $bg-grayed;
-    font-size: 18px;
-    font-weight: 700;
+    font-size: 16px;
+    font-weight: 600;
     transition: background-color $transitionDuration;
 
     &:hover {
         background-color: $accent;
+    }
+
+    @include mq-mobile {
+        font-size: 15px;
     }
 }

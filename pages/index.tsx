@@ -1,13 +1,16 @@
-import type { NextPage, GetStaticProps } from 'next'
+import type { NextPage, GetStaticProps, GetServerSideProps } from 'next'
 import axios from 'axios'
 import { Colleague } from '@/types/Colleague'
 import ColleaguesGrid from '@/components/ColleaguesGrid'
+import Toolbar from '@/components/Toolbar'
 
 interface Props {
     colleagues: Colleague[]
 }
 
-export const getStaticProps: GetStaticProps<Props> = async (context) => {
+export const getServerSideProps: GetServerSideProps<Props> = async (
+    context
+) => {
     // if env variables are unset we should just return an empty array
     if (!process.env.url || !process.env.token) {
         console.error('Please set the url and token in .env')
@@ -18,37 +21,46 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
         }
     }
 
+    const { sort, office } = context.query
+
     const { data } = await axios.get<Colleague[]>(process.env.url, {
         headers: { Authorization: `${process.env.token}` },
     })
 
-    console.log(!!data)
-
-    console.table(data.slice(0, 5))
-
-    console.log(data?.length)
-    if (data) {
-        console.log(data[219])
-
-        const al = data.find(
-            (colleague) => colleague.email === 'amin.yosoh@1337.tech'
-        )
-        console.log(al)
-    }
+    // filter by colleagues in the selected office
+    const colleagues =
+        office === 'all' || !office
+            ? data
+            : data.filter((colleague) => {
+                  if (office) {
+                      return (
+                          colleague.office ===
+                          //@ts-ignore
+                          office.charAt(0).toUpperCase() + office.slice(1)
+                      )
+                  }
+                  return false
+              })
 
     return {
         props: {
-            // limit to only 7 colleagues
-            colleagues: data.slice(0, 9),
-            // .slice(0, 25),
+            // limit to only 7 colleagues and reverse sort if necessary
+            colleagues:
+                //  colleagues.slice(0, 7),
+                sort === 'desc'
+                    ? colleagues.reverse().slice(0, 10)
+                    : colleagues.slice(0, 10),
         },
     }
 }
 
 const Home: NextPage<Props> = ({ colleagues }) => {
     return (
-        <div className='container'>
-            <ColleaguesGrid colleagues={colleagues} />
+        <div className='p-4'>
+            <div className='container'>
+                <Toolbar />
+                <ColleaguesGrid colleagues={colleagues} />
+            </div>
         </div>
     )
 }

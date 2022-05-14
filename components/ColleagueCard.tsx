@@ -17,7 +17,10 @@ const ColleagueCard: React.FC<ColleagueCardProps> = ({ colleague }) => {
                 <a>
                     <div className={styles.img}>
                         <Image
-                            src={colleague.imagePortraitUrl}
+                            src={
+                                colleague.imagePortraitUrl ||
+                                'https://i.1337co.de/profile/ziga-vajdic'
+                            }
                             layout='fill'
                             objectFit='cover'
                             alt={`${colleague.name} profile image`}

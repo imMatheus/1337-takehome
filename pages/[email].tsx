@@ -136,7 +136,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
         props: {
             colleague: colleague || null,
             colleagues: data
-                .filter((c) => c.email !== colleague?.email)
+                .filter((c) => c.email !== colleague?.email) // dont want to show the current colleague
                 .slice(0, 7),
         },
     }
